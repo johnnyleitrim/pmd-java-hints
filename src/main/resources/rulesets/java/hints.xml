@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<ruleset name="Hints"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        These rules recommend changes to use the latest Java language features
+    </description>
+
+    <rule name="ConvertToTryWithResources"
+          language="java"
+          minimumLanguageVersion="1.7"
+          message="Convert to try-with-resources"
+          class="io.johnnyleitrim.pmd.lang.java.rule.hints.ConvertToTryWithResources">
+        <description>
+            You should use the try-with-resources language feature of Java 7
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Foo {
+ void bar() {
+    FileOutputStream foobar = new FileOutputStream("out.txt");
+ }
+}
+]]>
+        </example>
+    </rule>
+
+</ruleset>

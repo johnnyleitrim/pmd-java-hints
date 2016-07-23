@@ -1,0 +1,6 @@
+# Ignore maven output
+/target/
+
+# Ignore IntelliJ IDEA project files
+/.idea/
+/*.iml

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+	<test-code>
+		<description><![CDATA[
+Success
+]]></description>
+		<expected-problems>0</expected-problems>
+		<code><![CDATA[
+import java.io.FileOutputStream;
+
+public class SomeClass {
+	private void tryWithResources() {
+		try (FileOutputStream out = new FileOutputStream("out.txt")) {
+			out.write("This is a string".getBytes(StandardCharsets.UTF_8));
+		}
+	}
+}
+		]]></code>
+	</test-code>
+	<test-code>
+		<description><![CDATA[
+Success
+]]></description>
+		<expected-problems>0</expected-problems>
+		<code><![CDATA[
+public class SomeClass {
+	private void trySomethingElse() {
+		String str = "Should not trigger anything";
+	}
+}
+		]]></code>
+	</test-code>
+	<test-code>
+		<description><![CDATA[
+Failure
+		]]></description>
+		<expected-problems>2</expected-problems>
+		<expected-messages>
+			<message>Convert to try-with-resources</message>
+			<message>Convert to try-with-resources</message>
+		</expected-messages>
+		<expected-linenumbers>6,11</expected-linenumbers>
+		<code><![CDATA[
+import java.io.FileOutputStream;
+
+public class SomeClass {
+	private void tryWithoutResources() {
+		{
+			FileOutputStream out = new FileOutputStream("out.txt");
+			out.write("This is a string".getBytes(StandardCharsets.UTF_8));
+			out.close();
+		}
+		{
+			FileOutputStream out = null;
+			try {
+				out = new FileOutputStream("out.txt");
+
+			} catch (Exception e) {
+				if (out != null) {
+					out.close();
+				}
+			}
+		}
+	}
+}
+		]]></code>
+	</test-code>
+</test-data>
