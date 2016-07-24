@@ -1,17 +1,36 @@
 package io.johnnyleitrim.pmd.lang.java.rule.hints;
 
+import io.johnnyleitrim.pmd.lang.java.rule.utils.Utils;
+import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
+
+import java.util.List;
 
 public class ConvertToTryWithResources extends AbstractJavaRule {
 
     @Override
     public Object visit(ASTLocalVariableDeclaration node, Object data) {
         if (node.getTypeNode().getType() != null && AutoCloseable.class.isAssignableFrom(node.getTypeNode().getType())) {
-            addViolation(data, node);
-            return data;
+            if (!isReturnedFromBlock(node)) {
+                addViolation(data, node);
+                return data;
+            }
         }
         return data;
+    }
+
+    public boolean isReturnedFromBlock(ASTLocalVariableDeclaration node) {
+        ASTBlock containingBlock = node.getFirstParentOfType(ASTBlock.class);
+        List<ASTReturnStatement> returnStatements = containingBlock.findDescendantsOfType(ASTReturnStatement.class);
+        for (ASTReturnStatement returnStatement : returnStatements) {
+            String returnedVariable = Utils.getReturnedVariableName(returnStatement);
+            if (node.getVariableName().equals(returnedVariable)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <test-data>
-	<test-code>
-		<description><![CDATA[
+    <test-code>
+        <description><![CDATA[
 Success
 ]]></description>
-		<expected-problems>0</expected-problems>
-		<code><![CDATA[
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
 import java.io.FileOutputStream;
 
 public class SomeClass {
@@ -16,31 +16,47 @@ public class SomeClass {
 	}
 }
 		]]></code>
-	</test-code>
-	<test-code>
-		<description><![CDATA[
+    </test-code>
+    <test-code>
+        <description><![CDATA[
 Success
 ]]></description>
-		<expected-problems>0</expected-problems>
-		<code><![CDATA[
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+import java.io.FileOutputStream;
+
+public class SomeClass {
+	private FileOutputStream openFie() {
+		FileOutputStream out = new FileOutputStream("out.txt");
+		return out;
+	}
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Success
+]]></description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
 public class SomeClass {
 	private void trySomethingElse() {
 		String str = "Should not trigger anything";
 	}
 }
 		]]></code>
-	</test-code>
-	<test-code>
-		<description><![CDATA[
+    </test-code>
+    <test-code>
+        <description><![CDATA[
 Failure
 		]]></description>
-		<expected-problems>2</expected-problems>
-		<expected-messages>
-			<message>Convert to try-with-resources</message>
-			<message>Convert to try-with-resources</message>
-		</expected-messages>
-		<expected-linenumbers>6,11</expected-linenumbers>
-		<code><![CDATA[
+        <expected-problems>2</expected-problems>
+        <expected-messages>
+            <message>Convert to try-with-resources</message>
+            <message>Convert to try-with-resources</message>
+        </expected-messages>
+        <expected-linenumbers>6,11</expected-linenumbers>
+        <code><![CDATA[
 import java.io.FileOutputStream;
 
 public class SomeClass {
@@ -64,5 +80,5 @@ public class SomeClass {
 	}
 }
 		]]></code>
-	</test-code>
+    </test-code>
 </test-data>

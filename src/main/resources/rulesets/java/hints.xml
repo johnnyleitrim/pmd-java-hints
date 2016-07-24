@@ -22,7 +22,8 @@
 <![CDATA[
 public class Foo {
  void bar() {
-    FileOutputStream foobar = new FileOutputStream("out.txt");
+    FileOutputStream stream = new FileOutputStream("out.txt");
+    return stream;
  }
 }
 ]]>
