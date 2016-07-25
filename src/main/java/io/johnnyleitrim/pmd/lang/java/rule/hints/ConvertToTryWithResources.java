@@ -1,12 +1,11 @@
 package io.johnnyleitrim.pmd.lang.java.rule.hints;
 
 import io.johnnyleitrim.pmd.lang.java.rule.utils.Utils;
+import java.util.List;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTLocalVariableDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
-
-import java.util.List;
 
 public class ConvertToTryWithResources extends AbstractJavaRule {
 
@@ -15,13 +14,12 @@ public class ConvertToTryWithResources extends AbstractJavaRule {
         if (node.getTypeNode().getType() != null && AutoCloseable.class.isAssignableFrom(node.getTypeNode().getType())) {
             if (!isReturnedFromBlock(node)) {
                 addViolation(data, node);
-                return data;
             }
         }
         return data;
     }
 
-    public boolean isReturnedFromBlock(ASTLocalVariableDeclaration node) {
+    private static boolean isReturnedFromBlock(ASTLocalVariableDeclaration node) {
         ASTBlock containingBlock = node.getFirstParentOfType(ASTBlock.class);
         List<ASTReturnStatement> returnStatements = containingBlock.findDescendantsOfType(ASTReturnStatement.class);
         for (ASTReturnStatement returnStatement : returnStatements) {
