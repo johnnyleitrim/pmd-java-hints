@@ -17,7 +17,7 @@
         <description>
             You should use the try-with-resources language feature of Java 7
         </description>
-        <priority>3</priority>
+        <priority>5</priority>
         <example>
 <![CDATA[
 EXAMPLE!
@@ -33,7 +33,23 @@ EXAMPLE!
         <description>
             You should use the numeric literals with underscores language feature of Java 7
         </description>
-        <priority>3</priority>
+        <priority>5</priority>
+        <example>
+<![CDATA[
+EXAMPLE!
+]]>
+        </example>
+    </rule>
+
+    <rule name="ConvertToDiamondOperator"
+          language="java"
+          minimumLanguageVersion="1.7"
+          message="Convert to diamond operator"
+          class="io.johnnyleitrim.pmd.lang.java.rule.hints.ConvertToDiamondOperator">
+        <description>
+            You should use the diamond operator language feature of Java 7
+        </description>
+        <priority>5</priority>
         <example>
 <![CDATA[
 EXAMPLE!

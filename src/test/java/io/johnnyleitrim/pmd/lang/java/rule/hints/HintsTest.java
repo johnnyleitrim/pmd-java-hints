@@ -10,5 +10,6 @@ public class HintsTest extends SimpleAggregatorTst {
     public void setUp() {
         addRule(RULESET, "ConvertToTryWithResources");
         addRule(RULESET, "ConvertToNumericsWithUnderscores");
+        addRule(RULESET, "ConvertToDiamondOperator");
     }
 }

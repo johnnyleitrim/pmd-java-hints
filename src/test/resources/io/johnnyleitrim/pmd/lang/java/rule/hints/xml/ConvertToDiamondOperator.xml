@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description><![CDATA[
+Success
+]]></description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+import java.util.ArrayList;
+
+public class SomeClass {
+    private List<String> someStrings = new ArrayList<>();
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Success
+]]></description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+import java.util.ArrayList;
+
+public class SomeClass {
+    private List someStrings = new ArrayList();
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Failure
+		]]></description>
+        <expected-problems>1</expected-problems>
+        <expected-messages>
+            <message>Convert to diamond operator</message>
+        </expected-messages>
+        <expected-linenumbers>4</expected-linenumbers>
+        <code><![CDATA[
+import java.util.ArrayList;
+
+public class SomeClass {
+    private List<String> someStrings = new ArrayList<String>();
+}
+		]]></code>
+    </test-code>
+</test-data>
