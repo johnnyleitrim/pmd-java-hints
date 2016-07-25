@@ -9,5 +9,6 @@ public class HintsTest extends SimpleAggregatorTst {
     @Override
     public void setUp() {
         addRule(RULESET, "ConvertToTryWithResources");
+        addRule(RULESET, "ConvertToNumericsWithUnderscores");
     }
 }

@@ -20,12 +20,23 @@
         <priority>3</priority>
         <example>
 <![CDATA[
-public class Foo {
- void bar() {
-    FileOutputStream stream = new FileOutputStream("out.txt");
-    return stream;
- }
-}
+EXAMPLE!
+]]>
+        </example>
+    </rule>
+
+    <rule name="ConvertToNumericsWithUnderscores"
+          language="java"
+          minimumLanguageVersion="1.7"
+          message="Convert to numeric literal with underscores"
+          class="io.johnnyleitrim.pmd.lang.java.rule.hints.ConvertToNumericsWithUnderscores">
+        <description>
+            You should use the numeric literals with underscores language feature of Java 7
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+EXAMPLE!
 ]]>
         </example>
     </rule>

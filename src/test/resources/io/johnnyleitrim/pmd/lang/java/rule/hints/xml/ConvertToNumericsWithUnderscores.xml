@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data>
+    <test-code>
+        <description><![CDATA[
+Success
+]]></description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+import java.io.FileOutputStream;
+
+public class SomeClass {
+	private void tryWithResources() {
+		try (FileOutputStream out = new FileOutputStream("out.txt")) {
+			out.write("This is a string".getBytes(StandardCharsets.UTF_8));
+		}
+	}
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Success
+]]></description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+import java.io.FileOutputStream;
+
+public class SomeClass {
+	private FileOutputStream openFie() {
+		FileOutputStream out = new FileOutputStream("out.txt");
+		return out;
+	}
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Success
+]]></description>
+        <expected-problems>0</expected-problems>
+        <code><![CDATA[
+public class SomeClass {
+    private int someNumber = 1_000;
+    private int smallNumber = 100;
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Failure
+		]]></description>
+        <expected-problems>8</expected-problems>
+        <expected-messages>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+            <message>Convert to numeric literal with underscores</message>
+        </expected-messages>
+        <expected-linenumbers>2,3,4,5,6,7,8,9</expected-linenumbers>
+        <code><![CDATA[
+public class SomeClass {
+    private int someNumber = 1000;
+    private Integer someNumberObject = new Integer(1000);
+    private long someLongNumber = 1000L;
+    private Long someLongNumberObject = new Long(1000L);
+    private double someDoubleNumber = 1000.0d;
+    private Double someDoubleNumberObject = new Double(1000.0d);
+    private float someFloatNumber = 1000.0f;
+    private Float someFloatNumberObject = new Float(1000.0f);
+}
+		]]></code>
+    </test-code>
+    <test-code>
+        <description><![CDATA[
+Failure
+		]]></description>
+        <expected-problems>1</expected-problems>
+        <expected-messages>
+            <message>Convert to numeric literal with underscores</message>
+        </expected-messages>
+        <expected-linenumbers>3</expected-linenumbers>
+        <code><![CDATA[
+public class SomeClass {
+    private int someNumber = 24;
+    private int someOtherNumber = someNumber + 1000;
+}
+		]]></code>
+    </test-code>
+</test-data>
